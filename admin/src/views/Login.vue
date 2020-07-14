@@ -25,6 +25,23 @@ export default {
   },
   methods:{
     async login(){
+      console.log("this.username===",this,this.model.username)
+      console.log("this.password===",this.model.password)
+      if(this.model.username===''||this.model.username===null||this.model.username===undefined){
+        this.$message({
+          type:'error',
+          message:'用户名没填写'
+        })
+        return false;
+      }
+
+      if(this.model.password===''||this.model.password===null||this.model.password===undefined){
+        this.$message({
+          type:'error',
+          message:'密码没填写'
+        })
+        return false;
+      }
       const res = await this.$http.post('login',this.model)
       // 浏览器关闭就没了
       // sessionStorage.token = res.data.token
@@ -33,7 +50,7 @@ export default {
       localStorage.token = res.data.token
       this.$router.push('/')
       this.$message({
-        type:'sucess',
+        type:'success',
         message:'登录成功'
       })
       console.log(res.data)

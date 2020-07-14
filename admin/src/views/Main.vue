@@ -10,85 +10,85 @@
       </el-header>
 
 
-      <el-container>
-         <!-- 侧边栏菜单 -->
-          <el-aside width="201px" style="background-color: #252a40">
-             <el-menu router :default-active="activePath" unique-opened
-        background-color="#252a40" text-color="#fff" active-text-color="#fdb933">
-               <!-- 内容管理一级菜单 -->
-              <el-submenu index="1">
-                <template slot="title"><i class="el-icon-message"></i>分类管理</template>
-                <!-- 内容管理二级菜单 -->
-                <el-menu-item-group>
-                  <template slot="title">分类</template>
-                  <el-menu-item index="/categories/create">新建分类</el-menu-item>
-                  <el-menu-item index="/categories/list">分类列表</el-menu-item>
-                </el-menu-item-group>
-              </el-submenu>
-              <!-- 物品管理一级菜单 -->
-              <el-submenu index="2">
-                <template slot="title"><i class="el-icon-message"></i>物品管理</template>
-                 <!-- 物品管理二级菜单 -->
-                <el-menu-item-group>
-                  <template slot="title">物品</template>
-                  <el-menu-item index="/items/create">新建物品</el-menu-item>
-                  <el-menu-item index="/items/list">物品列表</el-menu-item>
-                </el-menu-item-group>
-              </el-submenu>
-                
-              <!-- 英雄管理一级菜单 -->
-              <el-submenu index="3">
-                <template slot="title"><i class="el-icon-message"></i>英雄管理</template>
-                <!-- 英雄管理二级菜单 -->
-                <el-menu-item-group>
-                  <template slot="title">英雄</template>
-                  <el-menu-item index="/heroes/create">新建英雄</el-menu-item>
-                  <el-menu-item index="/heroes/list">英雄列表</el-menu-item>
-                </el-menu-item-group>
-              </el-submenu>
+          <el-container>
+            <!-- 侧边栏菜单 -->
+              <el-aside width="201px" style="background-color: #252a40">
+                <el-menu router :default-active="activePath" unique-opened
+            background-color="#252a40" text-color="#fff" active-text-color="#fdb933">
+                  <!-- 内容管理一级菜单 -->
+                  <el-submenu index="1">
+                    <template slot="title"><i class="el-icon-message"></i>分类管理</template>
+                    <!-- 内容管理二级菜单 -->
+                    <el-menu-item-group>
+                      <template slot="title">分类</template>
+                      <el-menu-item index="/categories/create">新建分类</el-menu-item>
+                      <el-menu-item index="/categories/list">分类列表</el-menu-item>
+                    </el-menu-item-group>
+                  </el-submenu>
+                  <!-- 物品管理一级菜单 -->
+                  <el-submenu index="2">
+                    <template slot="title"><i class="el-icon-message"></i>物品管理</template>
+                    <!-- 物品管理二级菜单 -->
+                    <el-menu-item-group>
+                      <template slot="title">物品</template>
+                      <el-menu-item index="/items/create">新建物品</el-menu-item>
+                      <el-menu-item index="/items/list">物品列表</el-menu-item>
+                    </el-menu-item-group>
+                  </el-submenu>
+                    
+                  <!-- 英雄管理一级菜单 -->
+                  <el-submenu index="3">
+                    <template slot="title"><i class="el-icon-message"></i>英雄管理</template>
+                    <!-- 英雄管理二级菜单 -->
+                    <el-menu-item-group>
+                      <template slot="title">英雄</template>
+                      <el-menu-item index="/heroes/create">新建英雄</el-menu-item>
+                      <el-menu-item index="/heroes/list">英雄列表</el-menu-item>
+                    </el-menu-item-group>
+                  </el-submenu>
 
-              <!-- 文章管理 -->
-              <el-submenu index="4">
-                <template slot="title"><i class="el-icon-message"></i>文章管理</template>
-                <!--文章管理二级菜单 -->
-                <el-menu-item-group>
-                  <template slot="title">文章</template>
-                  <el-menu-item index="/articles/create">新建文章</el-menu-item>
-                  <el-menu-item index="/articles/list">文章列表</el-menu-item>
-                </el-menu-item-group>
-              </el-submenu>
+                  <!-- 文章管理 -->
+                  <el-submenu index="4">
+                    <template slot="title"><i class="el-icon-message"></i>文章管理</template>
+                    <!--文章管理二级菜单 -->
+                    <el-menu-item-group>
+                      <template slot="title">文章</template>
+                      <el-menu-item index="/articles/create">新建文章</el-menu-item>
+                      <el-menu-item index="/articles/list">文章列表</el-menu-item>
+                    </el-menu-item-group>
+                  </el-submenu>
 
-              <!-- 广告位管理 -->
-              <el-submenu index="5">
-                <template slot="title"><i class="el-icon-message"></i>运营管理</template>
-                <el-menu-item-group>
-                  <template slot="title">广告位</template>
-                  <el-menu-item index="/ads/create">新建广告位</el-menu-item>
-                  <el-menu-item index="/ads/list">广告位列表</el-menu-item>
-                </el-menu-item-group>
-              </el-submenu>
+                  <!-- 广告位管理 -->
+                  <el-submenu index="5">
+                    <template slot="title"><i class="el-icon-message"></i>运营管理</template>
+                    <el-menu-item-group>
+                      <template slot="title">广告位</template>
+                      <el-menu-item index="/ads/create">新建广告位</el-menu-item>
+                      <el-menu-item index="/ads/list">广告位列表</el-menu-item>
+                    </el-menu-item-group>
+                  </el-submenu>
 
-               <!-- 系统设置 -->
-              <el-submenu index="6">
-                <template slot="title"><i class="el-icon-message"></i>系统设置</template>
-                <el-menu-item-group>
-                  <template slot="title">管理员</template>
-                  <el-menu-item index="/admin_users/create">新建管理员</el-menu-item>
-                  <el-menu-item index="/admin_users/list">管理员列表</el-menu-item>
-                </el-menu-item-group>
+                  <!-- 系统设置 -->
+                  <el-submenu index="6">
+                    <template slot="title"><i class="el-icon-message"></i>系统设置</template>
+                    <el-menu-item-group>
+                      <template slot="title">管理员</template>
+                      <el-menu-item index="/admin_users/create">新建管理员</el-menu-item>
+                      <el-menu-item index="/admin_users/list">管理员列表</el-menu-item>
+                    </el-menu-item-group>
 
-              </el-submenu>
+                  </el-submenu>
 
-            </el-menu>
-          </el-aside>
-    
-              <!-- 内容主体区域 -->
-          <el-main>
-            <router-view></router-view>
-          </el-main>
+                </el-menu>
+              </el-aside>
+        
+                  <!-- 内容主体区域 -->
+              <el-main>
+                <router-view></router-view>
+              </el-main>
+      </el-container>
+
   </el-container>
-
-    </el-container>
 
     
 </template>
