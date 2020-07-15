@@ -25,8 +25,6 @@ export default {
   },
   methods:{
     async login(){
-      console.log("this.username===",this,this.model.username)
-      console.log("this.password===",this.model.password)
       if(this.model.username===''||this.model.username===null||this.model.username===undefined){
         this.$message({
           type:'error',
@@ -53,7 +51,6 @@ export default {
         type:'success',
         message:'登录成功'
       })
-      console.log(res.data)
     }
   }
 }
