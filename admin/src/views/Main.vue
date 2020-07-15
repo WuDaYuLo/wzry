@@ -105,6 +105,25 @@
       return {
         tableData: Array(20).fill(item)
       }
+    },
+    computed: {
+      activePath() {
+        return this.$route.path
+      },
+    },
+    methods: {
+    // 退出登陆
+      loginOut() {
+        this.$confirm('是否退出当前账户?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(async () => {
+            window.localStorage.clear()
+            this.$router.push('/login')
+          })
+        
+      }
     }
   };
 </script>
