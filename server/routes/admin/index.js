@@ -55,6 +55,7 @@ module.exports = app => {
   // 登录校验授权中间件
   const authMiddleware = require("../../middleware/auth")
 
+  // 资源访问的中间件
   const resourceMiddleware = require("../../middleware/resource")
 
   // 资源路由
