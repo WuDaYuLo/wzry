@@ -2,11 +2,11 @@
 
         <m-card :icon="icon" :title="title">
 
-        <div class="card-body pt-3">
+
             <div class="nav jc-between">
                 <div class="nav-item" :class="{active:active === i }"
                 v-for="(category,i) in categories" :key="i"
-                @click="active = i"
+                @click="$refs.list.swiper.slideTo(i)"
                 >
                     <div class="nav-link">{{category.name}}</div>
                 </div>
@@ -14,7 +14,9 @@
             </div>
 
             <div class="pt-3">
-                <swiper>
+                <swiper ref="list" :options={autoHeight:true}
+                @slide-change="() => active = $refs.list.swiper.realIndex"
+                >
                 <swiper-slide v-for="(category,i) in categories" :key="i">
                     <!-- <div class="py-2"  v-for="(newList,i) in category.newLists" :key="i">
                     <span>{{newList.categories}}</span>
@@ -26,7 +28,7 @@
                 </swiper-slide>
                 </swiper>
             </div>
-        </div>
+
 
     </m-card>
 

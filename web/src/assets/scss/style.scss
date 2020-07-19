@@ -21,6 +21,10 @@ a{
   color: #999;
 }
 
+p{
+  line-height: 1.5rem;
+}
+
 
 
 @each $colorKey,$color in $colors {
@@ -38,6 +42,16 @@ a{
     text-align: $var!important;
   }
 }
+
+// text-overflow
+
+.text-ellipsis{
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 
 
 @each $sizeKey,$size in $font-sizes {
@@ -150,6 +164,22 @@ a{
   -webkit-font-smoothing:antialiased;
   padding: 0.2rem 0.6rem;
   border: none;
+  &.btn-lg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.4rem;
+    i{
+      color: map-get($colors, 'primary');
+      margin-right:.5rem;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+     background:map-get($colors, "white-1");
+     border: 1px solid map-get($colors, "white-2" );
+     padding: .8rem 1rem;
+     font-size: 1rem;
+  }
 }
 
 // nav
@@ -191,6 +221,15 @@ a{
     width: 0.7692rem;
     height: 0.7692rem;
     background-position:  38.577% 52.076%;
+  }
+}
+
+
+// borders
+
+@each $dir in (top,right,bottom,left) {
+  .border-#{$dir}{
+    border-#{$dir}:1px solid $border-color;
   }
 }
 

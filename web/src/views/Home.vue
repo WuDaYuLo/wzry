@@ -68,10 +68,33 @@
     
     <m-list-card icon="menu1" title="新闻资讯" :categories="newsCats">
       <template #items="{category}">
-          <div class="py-2"  v-for="(item,i) in category.newLists" :key="i">
-            <span>[{{item.categories}}]</span>
-            <span>{{item.title}}</span>
-            <span class="time">{{item.date}}</span>
+          <router-link 
+          tag="div"
+          :to="`articles/${news._id}`"
+          class="py-2 fs-lg d-flex" 
+           v-for="(news,i) in category.newsList" :key="i">
+            <span class="text-info cateName">{{news.categoryName}}</span>
+            <span class="flex-1 text-dark-1 text-ellipsis pr-2">{{news.title}}</span>
+            <span class="text-grey-1 fs-sm">{{news.createdAt | date}}</span>
+          </router-link>
+      </template>
+      
+    </m-list-card>
+
+
+    <m-list-card icon="card-hero" title="英雄列表" :categories="heroCats">
+      <template #items="{category}">
+          <div class="d-flex flex-wrap" style="margin:0 -0.5rem">
+            <router-link
+              tag="div"
+              :to="`/heroes/${hero._id}`"
+              class="p-2 text-center"  
+              style="width:20%"
+              v-for="(hero,i) in category.heroList" :key="i">
+            
+              <img :src="hero.avatar" alt="" class="w-100">
+              <div>{{hero.name}}</div>
+            </router-link>
           </div>
       </template>
       
@@ -92,7 +115,14 @@
 
 <script>
 
+import dayjs from "dayjs";
+
 export default {
+  filters:{
+    date(val){
+      return dayjs(val).format("MM/DD")
+    }
+  },
   data(){
     return {
       swiperOptions:{
@@ -110,55 +140,27 @@ export default {
         observeParents:true,//修改swiper的父元素时，自动初始化swiper 
         },
 
-        newsCats:[
-          {
-            name:"热门",
-            newLists:new Array(5).fill(1).map(() =>({
-                categories:"热门",
-                title:"7月17日体验服停机更新公告",
-                date:"07/18"
-              }))
-
-          },
-          {
-            name:"新闻",
-            newLists:new Array(5).fill(1).map(() =>({
-                categories:"新闻",
-                title:"7月17日体验服停机更新公告",
-                date:"07/18"
-              }))
-
-          },
-          {
-            name:"公告",
-            newLists:new Array(5).fill(1).map(() =>({
-                categories:"公告",
-                title:"7月17日体验服停机更新公告",
-                date:"07/18"
-              }))
-
-          },
-          {
-            name:"活动",
-            newLists:new Array(5).fill(1).map(() =>({
-                categories:"活动",
-                title:"7月17日体验服停机更新公告",
-                date:"07/18"
-              }))
-
-          },
-          {
-            name:"赛事",
-            newLists:new Array(5).fill(1).map(() =>({
-                categories:"赛事",
-                title:"7月17日体验服停机更新公告",
-                date:"07/18"
-              }))
-
-          },
-        ],
+        newsCats:[],
+        heroCats:[],
     }
-  }  
+  },
+  created(){
+
+    this.fetchNewsCats()
+    this.fetchHeroCats()
+  },
+  methods:{
+    async fetchNewsCats(){
+      const res = await this.$http.get('news/list')
+      console.log("res=",res)
+      this.newsCats = res.data
+    },
+    async fetchHeroCats(){
+      const res = await this.$http.get('heroes/list')
+      console.log("res=",res)
+      this.heroCats = res.data
+    }
+  }
 }
 </script>
 
@@ -189,5 +191,15 @@ export default {
       border-right: none;
     }
   }
+}
+
+.cateName{
+   border-radius: 0.1rem;
+    padding: 0.1rem 0.12rem;
+    border: 1px solid #f4be19;
+    color: #f4be19;
+    font-size: 0.2rem;
+    margin-right: 0.4rem;
+    vertical-align: bottom;
 }
 </style>
