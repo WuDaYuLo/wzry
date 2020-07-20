@@ -52,19 +52,92 @@
         <swiper-slide>
           <div>
             <div class="p-3 bg-white border-bottom">
+
               <div class="d-flex">
                 <router-link tag="button" to="/" class="btn btn-lg flex-1">
-                <i class="iconfont icon-menu1"></i>
-                英雄介绍视频
-              </router-link>
-              <router-link tag="button" to="/" class="btn btn-lg flex-1 ml-2">
-                <i class="iconfont icon-menu1"></i>
-                一图识英雄
-              </router-link>
+                  <i class="iconfont icon-menu1"></i>
+                  英雄介绍视频
+                </router-link>
+                <router-link tag="button" to="/" class="btn btn-lg flex-1 ml-2">
+                  <i class="iconfont icon-menu1"></i>
+                  一图识英雄
+                </router-link>
               </div>
+
+                <!-- skills -->
+              <div class="skills bg-white mt-4">
+                <div class="d-flex jc-around">
+                  <img :src="item.icon" alt="" 
+                  class="icon"
+                  @click="currentSkillIndex = i"
+                  :class="{active : currentSkillIndex === i}"
+                  v-for="(item,i) in model.skills"
+                  :key="item.name"
+                  
+                  >
+                </div>
+
+                <div v-if="currentSkill">
+                  <div class="d-flex pt-4 pb-3">
+                    <h3 class="m-0">{{currentSkill.name}}</h3> 
+                    <span class="text-grey-1 ml-4">(冷却值：{{currentSkill.delay}} 消耗：{{currentSkill.cost}})</span>
+                  </div>
+                    <p>{{currentSkill.description}}</p>
+                    <div class="border-bottom"></div>
+                    <p class="text-grey-1">小提示：{{currentSkill.tips}}</p>
+                </div>
+
+
+              </div>
+
             </div>
+
+           
+            <m-card plain icon="menu1" title="出装推荐" class="hero-items">
+              <div class="fs-xl">顺风出装</div>
+              <div class="d-flex jc-between text-center my-3">
+                <div v-for="item in model.items1" :key="item.name">
+                  <img :src="item.icon" alt="" class="icon mb-2">
+                  <div class="fs-xs">{{item.name}}</div>
+                </div>
+              </div>
+              <div class="border-bottom"></div>
+              <div  class="fs-xl mt-3">逆风出装</div>
+              <div class="d-flex jc-between text-center mt-3">
+                <div v-for="item in model.items1" :key="item.name">
+                  <img :src="item.icon" alt="" class="icon mb-2">
+                  <div class="fs-xs">{{item.name}}</div>
+                </div>
+              </div>
+            </m-card>
+            <m-card plain icon="menu1" title="使用技巧">
+              <p>{{model.usageTips}}</p>
+            </m-card>
+            <m-card plain icon="menu1" title="对抗技巧">
+              <p>{{model.battleTips}}</p>
+            </m-card>
+            <m-card plain icon="menu1" title="对抗技巧">
+              <p>{{model.teamTips}}</p>
+            </m-card>
+ 
+            <m-card plain icon="menu1" title="英雄关系">
+              <div class="fs-xl">最佳搭档</div>
+              <div v-for="item in model.partners" :key="item.name" class="d-flex pt-4">
+                <img :src="item.hero.avatar" alt="" height="50">
+                <p class="flex-1 ml-3 m-0">{{item.description}}</p>
+              </div>
+
+              <div class="border-bottom mt-3"></div>
+            </m-card>
+
+
+
+
           </div>
         </swiper-slide>
+
+
+        <swiper-slide></swiper-slide>
       </swiper>
 
     </div>
@@ -80,6 +153,12 @@ export default {
   data(){
     return {
       model:null,
+      currentSkillIndex:0,
+    }
+  },
+  computed:{
+    currentSkill(){
+      return this.model.skills[this.currentSkillIndex]
     }
   },
   methods:{
@@ -96,6 +175,9 @@ export default {
 </script>
 
 <style lang="scss">
+
+@import "../assets/scss/_variables.scss";
+
 .page-hero{
   .top{
     height: 50vw;
@@ -117,6 +199,25 @@ export default {
         font-size: .75rem;
         border: 1px solid rgba(255,255,255,.2)
       }
+    }
+  }
+  .skills{
+    img.icon{
+      border: 3px solid map-get($colors, "white");
+      &.active{
+        border-color:map-get($colors, "primary");
+      }
+      border-radius: 50%;
+      width:70px;
+      height:70px;
+    }
+  }
+
+  .hero-items{
+    img.icon{
+      width:45px;
+      height: 45px;
+      border-radius: 50%;
     }
   }
 }
